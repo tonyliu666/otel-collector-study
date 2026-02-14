@@ -143,7 +143,7 @@ config:
     debug: {}
     # Prometheus Remote Write exporter - configure endpoint to send metrics to Prometheus
     prometheusremotewrite:
-      endpoint: "http://prometheus-server:9090/api/v1/write"  # Change this to your Prometheus endpoint
+      endpoint: "http://kube-prometheus-stack-prometheus.monitoring.svc.cluster.local:9090/api/v1/write"  # Change this to your Prometheus endpoint
       # For local testing, you might use: http://localhost:9090/api/v1/write
       # tls:
       #   insecure: true

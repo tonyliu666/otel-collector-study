@@ -32,3 +32,5 @@ command:
 > helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 > helm repo update
 
+install command:
+> helm install prometheus prometheus-community/prometheus -f prometheus-values.yaml -ngit push -u origin main
