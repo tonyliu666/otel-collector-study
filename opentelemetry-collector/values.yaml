@@ -140,10 +140,11 @@ internalTelemetryViaOTLP:
 # For example, {{ REDACTED_EMAIL }} becomes {{` {{ REDACTED_EMAIL }} `}}.
 config:
   exporters:
-    debug: {}
+    debug:
+      verbosity: detailed
     # Prometheus Remote Write exporter - configure endpoint to send metrics to Prometheus
     prometheusremotewrite:
-      endpoint: "http://kube-prometheus-stack-prometheus.monitoring.svc.cluster.local:9090/api/v1/write"  # Change this to your Prometheus endpoint
+      endpoint: "http://prom-stack-kube-prometheus-prometheus.monitoring.svc.cluster.local:9090/api/v1/write"  # Change this to your Prometheus endpoint
       # For local testing, you might use: http://localhost:9090/api/v1/write
       # tls:
       #   insecure: true
@@ -261,7 +262,7 @@ alternateConfig: {}
 
 image:
   # If you want to use the core image `otel/opentelemetry-collector`, you also need to change `command.name` value to `otelcol`.
-  repository: "otel/opentelemetry-collector-k8s"
+  repository: "otel/opentelemetry-collector-contrib"
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""

@@ -5,7 +5,7 @@ download chart:
 > helm repo update
 
 install command:
-> helm -n tempo-test install tempo grafana/tempo-distributed -f custom.yaml
+> helm -n tempo-test install tempo grafana/tempo-distributed -f tempo-values.yaml
 
 ### otel-collector
 
@@ -23,7 +23,7 @@ download all the chart and values.yaml:
 * command:
 helm install otel-collector ./opentelemetry-collector \
   -f ./opentelemetry-collector/values.yaml \
-  -n observability --create-namespace
+  -n monitoring --create-namespace
 
 
 ### prometheus
@@ -33,4 +33,10 @@ command:
 > helm repo update
 
 install command:
-> helm install prometheus prometheus-community/prometheus -f prometheus-values.yaml -ngit push -u origin main
+> helm install prometheus prometheus-community/prometheus -f prometheus-values.yaml -n monitoring
+
+feature:
+    * add the additionalScrapeConfigs for otel-collector metrics
+
+prometheus UI: 
+> kubectl port-forward svc/prom-stack-kube-prometheus-prometheus 9090:9090 
